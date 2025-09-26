@@ -1,13 +1,19 @@
-from data import utilisateurs
+from data import utilisateurs, aime_livres
 #.1
 majeurs = list(filter(lambda u: u[3] >= 18, utilisateurs))
 print(utilisateurs)
-print(majeurs)
+print("List majeurs :", majeurs)
 #.2
 noms_majuscules = list(map(lambda u: (u[1] + " " + u[2]).upper(), utilisateurs))
-print(noms_majuscules)
+print("List majuscules :", noms_majuscules)
 #.3
-for u in utilisateurs:
-    nom_complet = f"{u[1].upper()} {u[2].upper()} ({u[3]} ans)"
-    livres = ", ".join([f"'{livre}'" for livre in u[2]])
-    print(f"{nom_complet} aime : {livres}")
+dict_amie_livres = {}
+for utilisateur in utilisateurs:
+    id, prenom, nom, age = utilisateur
+    dict_amie_livres[prenom + " " + nom] = []
+    for aime in aime_livres:
+        if aime[0] == id:
+            dict_amie_livres[prenom + " " + nom].append(aime[1])
+
+print("Dictionnaire amis-livres :", dict_amie_livres)
+    
