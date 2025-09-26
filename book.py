@@ -14,3 +14,15 @@ plus_encien = min(annee_de_publication, key=lambda livre: livre["année"])
 
 # Get the newest book
 plus_recent = annee_de_publication[-1]
+
+
+# count books
+def count_livre(aime_livres):
+    dict_count = {}
+    for book_tuple in aime_livres:
+        _, title = book_tuple
+        if title in dict_count:
+            dict_count[title] += 1
+        else:
+            dict_count[title] = 1
+    return dict_count
