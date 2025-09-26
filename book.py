@@ -6,3 +6,11 @@ def sort_books(books_list: list, param: str) -> list:
 
 
 annee_de_publication = sort_books(livres, "année")
+
+
+# Get the oldest book
+plus_encien = min(annee_de_publication, key=lambda livre: livre["année"])
+# annee_de_publication[0]
+
+# Get the newest book
+plus_recent = annee_de_publication[-1]
