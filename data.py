@@ -5,3 +5,10 @@ livres = [
 ]
 
 aime_livres = [(1, "1984"), (1, "Le Petit Prince"), (3, "Harry Potter"), (4, "1984")]
+
+utilisateurs = [
+    (1, "Alice", "Dupont", 25),
+    (2, "Bob", "Martin", 17),
+    (3, "Clara", "Durand", 32),
+    (4, "David", "Petit", 20),
+]
