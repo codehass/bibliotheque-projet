@@ -1,4 +1,4 @@
-from data import livres, utilisateurs
+from data import livres
 import math
 
 
@@ -9,19 +9,23 @@ def sort_books(books_list: list, param: str) -> list:
 annee_de_publication = sort_books(livres, "année")
 
 
-# Get the oldest book
-plus_encien = min(annee_de_publication, key=lambda livre: livre["année"])
-# annee_de_publication[0]
+def display_list_of_books(books):
+    for book in books:
+        print(" ", book)
+    print("\n")
 
-# Get the newest book
+
+# Obtenir le livre le plus ancien
+plus_ancien = min(annee_de_publication, key=lambda livre: livre["année"])
+
+# Obtenir le livre le plus récent
 plus_recent = annee_de_publication[-1]
 
 
-# count books
+# Compter les livres aimés
 def count_livre(aime_livres):
     dict_count = {}
-    for book_tuple in aime_livres:
-        _, title = book_tuple
+    for _, title in aime_livres:
         if title in dict_count:
             dict_count[title] += 1
         else:
@@ -31,22 +35,22 @@ def count_livre(aime_livres):
 
 def pagination(users_list, user_per_page=2):
     total_users = len(users_list)
-    num_of_pages = int(math.ceil(total_users / user_per_page))
-    print("num of pages", num_of_pages)
+    num_of_pages = math.ceil(total_users / user_per_page)
+    print(f"Nombre de pages : {num_of_pages}\n")
 
     current_page = 1
     index = 0
     while current_page <= num_of_pages:
-        print(f"-------Page {current_page}----------")
-        for index in range(index, user_per_page + index):
-            if index < total_users:
-                _, first_name, last_name, _ = users_list[index]
-                print(f"    - {first_name}, {last_name}")
+        print(f"------- Page {current_page} -------")
+        for i in range(index, index + user_per_page):
+            if i < total_users:
+                _, first_name, last_name, _ = users_list[i]
+                print(f"    - {first_name} {last_name}")
             else:
                 break
-            index += 1
+        index += user_per_page
         current_page += 1
-        print("------------------------")
+        print("------------------------------")
 
-        if current_page <= total_users:
-            input("\nPress Enter to view the next page...")
+        if current_page <= num_of_pages:
+            input("\nAppuyez sur Entrée pour voir la page suivante...")
